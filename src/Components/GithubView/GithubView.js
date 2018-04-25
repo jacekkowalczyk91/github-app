@@ -7,24 +7,24 @@ class GithubView extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`https://api.github.com/users/allegro/repos`)
+        fetch(`https://api.github.com/users/jacekkowalczyk91/repos`)
             .then(response => response.json())
-            .then(data => this.setState({data}))
+            .then(data =>
+                this.setState({data})
+            )
     }
+
 
     render() {
 
-        const {data} = this.state
+        const maxDate = this.state.data.map(function (e) {
+            return e.updated_at;
+        }).sort().reverse()[0]
+
         return (
             <div>
                 {
-                    data && data.map(
-                        (dat, index) => (
-                            <div key={index}>
-                                <h1>{dat.name}</h1>
-                            </div>
-                        )
-                    )
+                    maxDate
                 }
             </div>
         )
