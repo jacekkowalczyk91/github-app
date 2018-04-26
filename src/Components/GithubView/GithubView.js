@@ -42,7 +42,7 @@ class GithubView extends React.Component {
         return (
             <div>
                 <button
-                    onClick={this.sortBy('updated_at')}
+                    onClick={() => this.sortBy('updated_at')}
                 >Latest repo name
                 </button>
                 {
