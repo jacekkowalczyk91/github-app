@@ -3,57 +3,31 @@ import React from 'react'
 class GithubView extends React.Component {
 
     state = {
-        data: [],
-        lastDate: []
+        lastOne: {}
     }
 
     componentDidMount() {
-        fetch(`https://api.github.com/users/jacekkowalczyk91/repos`)
+        fetch(`https://api.github.com/users/allegro/repos`)
             .then(response => response.json())
             .then(data => {
 
+                const milisecondDates = data.map((record) => new Date(record.updated_at).getTime());
+                const theLastest = data.filter((record ) => new Date(record.updated_at).getTime() === Math.max(...milisecondDates))[0];
                 this.setState({
-                    lastDate: new Date(Math.max(...data.map(data => new Date(data.updated_at)))),
-                    data: data
+                    lastOne: theLastest,
                 })
             })
     }
 
-    compareBy = key => {
-        return function (a, b) {
-            if (b[key] < a[key]) return -1;
-            if (b[key] > a[key]) return 1;
-            return 0;
-        };
-    }
-
-    sortBy = key => {
-        let arrayCopy = [...this.state.data];
-        arrayCopy.sort(this.compareBy(key));
-        this.setState({data: arrayCopy});
-    }
-
-
 
     render() {
-
-
-        const {data} = this.state
+        const {lastOne} = this.state
         return (
-            <div>
-                <button
-                    onClick={() => this.sortBy('updated_at')}
-                >Latest repo name
-                </button>
-                {
-                    data.map(
-                        data =>
-                            <p>{data.name}</p>
-                    )
-                }
-            </div>
+            <p>{lastOne.name}</p>
         )
     }
 }
 
 export default GithubView
+
+
