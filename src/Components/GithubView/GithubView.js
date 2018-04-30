@@ -4,7 +4,8 @@ import './GithubView.css'
 class GithubView extends React.Component {
 
     state = {
-        lastOne: {}
+        lastOne: {},
+        style: 'hide'
     }
 
     fetchData = (event) => {
@@ -21,6 +22,10 @@ class GithubView extends React.Component {
             })
     }
 
+    handleClick = () => {
+        this.setState({style: 'show'})
+    }
+
 
     render() {
         const {lastOne} = this.state
@@ -30,11 +35,13 @@ class GithubView extends React.Component {
                 onSubmit={this.fetchData}
             >
                 <button
-                    className='btn'
+                    onClick={this.handleClick}
                     type='submit'
                 >Get Latest Modified Allegro Repository
                 </button>
-                <div>Repository name: {lastOne.name}</div>
+                <div
+                    className={this.state.style}
+                >Repository name: {lastOne.name}</div>
             </form>
 
 

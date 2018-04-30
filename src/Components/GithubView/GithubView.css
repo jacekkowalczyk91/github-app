@@ -6,3 +6,11 @@
 .btn {
     margin-bottom: 10%;
 }
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
