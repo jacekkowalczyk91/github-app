@@ -35,6 +35,7 @@ class GithubView extends React.Component {
                 onSubmit={this.fetchData}
             >
                 <button
+                    className='btn'
                     onClick={this.handleClick}
                     type='submit'
                 >Get Latest Modified Allegro Repository

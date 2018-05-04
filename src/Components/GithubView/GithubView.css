@@ -5,6 +5,9 @@
 }
 .btn {
     margin-bottom: 10%;
+    border-radius: 5px;
+    background: tomato;
+    border: 1px solid black;
 }
 
 .show {
